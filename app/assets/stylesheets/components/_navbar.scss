@@ -8,5 +8,16 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 80px;
+  border-radius: 5px;
+}
+
+.navbar-lewagon .nav-link {
+  transition-timing-function: 0.5s;
+}
+.navbar-lewagon .nav-link:hover {
+  background-color: gray;
+  color: white;
+  border-radius: 5px;
+  transition-duration: 0.4s;
 }

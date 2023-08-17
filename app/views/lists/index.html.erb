@@ -1,0 +1,24 @@
+<div class="banner d-flex justify-content-center align-items-center">
+  <h1>All lists</h1>
+</div>
+
+<div class="content">
+  <div class="d-flex justify-content-evenly mt-3">
+    <h2>Create your list</h2>
+    <%= simple_form_for @list, html: { class:"d-flex"} do |f| %>
+      <%= f.input :name, label_html: { class: 'd-none' }%>
+      <%= f.submit "Create", class: "btn btn-success button-home" %>
+    <% end %>
+  </div>
+  <div class="my-5">
+    <div class="row">
+    <% @lists.each do |list| %>
+    <div class="col-12 col-lg-6 col-xl-4 movie-card">
+      <div class="d-flex justify-content-center align-items-center shadow mb-3" style="background-image: linear-gradient(rgba(10, 10, 10, 0.4),rgba(10, 10, 10, 0.4)), url(https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2370&q=80);background-position: center; background-size: cover; height:310px">
+        <%= link_to list.name, list_path(list), class: "text-decoration-none stretched-link text-white fs-3"%>
+      </div>
+      <%# <%= link_to "Delete", list_path(@list), data: {turbo_method: :delete, turbo_confirm:"Are you sure ?"} %>
+    </div>
+      <% end %>
+  </div>
+</div>
