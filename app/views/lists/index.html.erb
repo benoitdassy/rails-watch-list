@@ -16,7 +16,11 @@
     <div class="row">
     <% @lists.each do |list| %>
     <div class="col-12 col-lg-6 col-xl-4 movie-card">
-      <div class="d-flex justify-content-center align-items-center shadow mb-3" style="background-image: linear-gradient(rgba(10, 10, 10, 0.4),rgba(10, 10, 10, 0.4)), url('<%= cl_image_path list.photo.key, height: 300, crop: :fill %>');background-position: center; background-size: cover; height:310px">
+      <% if list.photo.attached? %>
+        <div class="d-flex justify-content-center align-items-center shadow mb-3" style="background-image: linear-gradient(rgba(10, 10, 10, 0.4),rgba(10, 10, 10, 0.4)), url('<%= cl_image_path list.photo.key, height: 300, crop: :fill %>');background-position: center; background-size: cover; height:310px">
+      <% else %>
+        <div class="d-flex justify-content-center align-items-center shadow mb-3" style="background-image: linear-gradient(rgba(10, 10, 10, 0.4),rgba(10, 10, 10, 0.4)), url('https://static.vecteezy.com/system/resources/previews/011/508/381/original/movie-film-banner-design-template-cinema-background-concept-cinema-concept-with-popcorn-filmstrip-and-film-clapper-on-yellow-background-illustration-free-vector.jpg');background-position: center; background-size: cover; height:310px">
+      <% end %>
         <%= link_to list.name, list_path(list), class: "text-decoration-none stretched-link text-white fs-3"%>
       </div>
     </div>
