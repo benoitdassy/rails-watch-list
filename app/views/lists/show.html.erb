@@ -4,6 +4,21 @@
 
   <div class="my-5">
     <div class="row">
+          <div class="col-12 col-lg-4" style="height:fit-content; top:100px">
+            <div class="bg-white border py-3">
+              <h2 class="m-3">Add a new movie to your list</h2>
+              <%= simple_form_for [@list, @bookmark], html: { class: "m-3" } do |f| %>
+                <%= f.association :movie %>
+                <%= f.label :comment, 'Add a comment about the film' %>
+                <%= f.input :comment, label: false %>
+                <%= f.submit "Add", class:"btn btn-primary" %>
+              <% end %>
+            </div>
+            <div>
+              <%= link_to 'Delete the list', list_path(@list), data: {turbo_method: :delete, turbo_confirm:"Are you sure to delete the list ?"}, class: 'btn btn-danger text-light w-100 my-3' %>
+            </div>
+          </div>
+
       <div class="col-12 col-lg-8">
         <div class="row">
           <% @bookmarks.each do |bookmark| %>
@@ -24,20 +39,6 @@
             </div>
           </div>
           <% end %>
-        </div>
-      </div>
-      <div class="col-12 col-lg-4 sticky-top" style="height:fit-content; top:100px">
-        <div class="bg-white border py-3">
-          <h2 class="m-3">Add a new movie to your list</h2>
-          <%= simple_form_for [@list, @bookmark], html: { class: "m-3" } do |f| %>
-            <%= f.association :movie %>
-            <%= f.label :comment, 'Add a comment about the film' %>
-            <%= f.input :comment, label: false %>
-            <%= f.submit "Add", class:"btn btn-primary" %>
-          <% end %>
-        </div>
-        <div>
-          <%= link_to 'Delete the list', list_path(@list), data: {turbo_method: :delete, turbo_confirm:"Are you sure to delete the list ?"}, class: 'btn btn-danger text-light w-100 mt-3' %>
         </div>
       </div>
     </div>

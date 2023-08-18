@@ -1,16 +1,15 @@
-<div class="banner d-flex justify-content-center align-items-center">
-  <h1>All lists</h1>
+<div class="banner d-flex justify-content-around align-items-center">
+    <%= simple_form_for @list, html: { class:"form-banner" } do |f| %>
+      <%= f.label :name, "Give a name to your new list" %>
+      <%= f.input :name, label: false %>
+      <%= f.input :photo, as: :file %>
+      <%= f.submit "Create", class: "btn btn-success button-home" %>
+    <% end %>
 </div>
 
 <div class="content">
   <div class="d-flex justify-content-evenly mt-3">
-    <h2>Create your list</h2>
-    <%= simple_form_for @list, html: { class:"d-flex justify-content-between"} do |f| %>
-      <%= f.label :name, class:"input-group-text button-home" %>
-      <%= f.input :name, label: false %>
-      <%= f.input :photo, as: :file, label: false %>
-      <%= f.submit "Create", class: "btn btn-success button-home" %>
-    <% end %>
+    <h2>All lists</h2>
   </div>
   <div class="my-5">
     <div class="row">
@@ -27,3 +26,10 @@
       <% end %>
   </div>
 </div>
+
+    <%# <%= simple_form_for @list, html: { class:"d-flex justify-content-between"} do |f| %>
+      <%# <%= f.label :name, class:"input-group-text button-home" %>
+      <%# <%= f.input :name, label: false %>
+      <%# <%= f.input :photo, as: :file, label: false %>
+      <%# <%= f.submit "Create", class: "btn btn-success button-home" %>
+    <%# <% end %>
