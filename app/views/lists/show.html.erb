@@ -14,6 +14,27 @@
                 <%= f.submit "Add", class:"btn btn-primary" %>
               <% end %>
             </div>
+              <div class="accordion mt-3" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Don't find a movie ? Create the movie
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body bg-white">
+                          <%= simple_form_for @movie, html: { class: "m-3" } do |f| %>
+                          <%= hidden_field_tag(:list_id, @list.id) %>
+                          <%= f.input :title%>
+                          <%= f.input :overview%>
+                          <%= f.input :rating %>
+                          <%= f.input :image, as: :file %>
+                          <%= f.submit "Add", class:"btn btn-primary" %>
+                        <% end %>
+                      </div>
+                    </div>
+                </div>
+              </div>
             <div>
               <%= link_to 'Delete the list', list_path(@list), data: {turbo_method: :delete, turbo_confirm:"Are you sure to delete the list ?"}, class: 'btn btn-danger text-light w-100 my-3' %>
             </div>
@@ -24,7 +45,11 @@
           <% @bookmarks.each do |bookmark| %>
           <div class="col-12 col-lg-6">
             <div class="card mx-auto mb-3" style="width: 18rem;">
-              <img src=<%= bookmark.movie.poster_url %> class="card-img-top" alt="...">
+              <% if bookmark.movie.poster_url %>
+                <img src=<%= bookmark.movie.poster_url %> class="card-img-top" alt="...">
+              <% else %>
+                <%= cl_image_tag bookmark.movie.image.key, class: 'card-img-top'%>
+              <% end %>
               <div class="card-body">
                 <h5 class="card-title"><%= bookmark.movie.title %></h5>
                 <p class="card-text"><%= bookmark.movie.overview %></p>
